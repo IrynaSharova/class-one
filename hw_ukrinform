@@ -1,0 +1,8 @@
+url <- "https://www.ukrinform.ua/"
+content <- read_html(url)
+
+title <- content %>% html_nodes('div.othersBody div a') %>% html_text()
+link <- content %>% html_nodes('div.othersBody div a') %>% html_attr('href')
+
+df <- data.frame(headline = title, url = link)
+write.csv(df, 'ukrinform_news.csv')
